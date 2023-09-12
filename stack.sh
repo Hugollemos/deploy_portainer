@@ -33,10 +33,13 @@ if echo "$response" | jq -e '.[] | select(.Name == "'"$STACK_NAME"'")' > /dev/nu
   -F "file=@$FILE_PATH" \
   -F "endpointId=2" \
   -F "Name=$STACK_NAME" --insecure
+  
+  echo fazendo o pull da imagem
+  docker pull hugollemos/demo:latest
 
   echo "Stack deletada. ID: $id"
-  echo "Aguardando 60 segundos..."
-  sleep 60
+  echo "Aguardando 5 segundos..."
+  sleep 5
   echo "CRIANDO A STACK $name"
 
   response=$(curl -s -X POST "$URL" \

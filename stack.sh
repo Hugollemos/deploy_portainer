@@ -33,10 +33,10 @@ if echo "$response" | jq -e '.[] | select(.Name == "'"$STACK_NAME"'")' > /dev/nu
   -F "file=@$FILE_PATH" \
   -F "endpointId=2" \
   -F "Name=$STACK_NAME" --insecure
-  
-  echo fazendo o pull da imagem
-  docker pull hugollemos/demo:latest
 
+  echo "realizando o pull"
+  docker pull hugollemos/demo:latest
+  
   echo "Stack deletada. ID: $id"
   echo "Aguardando 5 segundos..."
   sleep 5
@@ -59,6 +59,9 @@ if echo "$response" | jq -e '.[] | select(.Name == "'"$STACK_NAME"'")' > /dev/nu
   # Imprimir o valor do Id
   echo "Nova Stack criada. Id: $id"
 else
+  echo fazendo o pull da imagem
+  docker pull hugollemos/demo:latest
+
   echo "Nenhuma Stack da aplicação encontrada."
   echo "CRIANDO A NOVA STACK"
 

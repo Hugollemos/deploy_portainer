@@ -14,7 +14,7 @@ if echo "$response" | jq -e '.[] | select(.Name == "'"$STACK_NAME"'")' > /dev/nu
   name=$(echo "$response" | jq -r '.[] | select(.Name == "'"$STACK_NAME"'") | .Name')
 
   # Imprime o nome da stack
-  echo "A Stack chamada $name está criada. Nome: $name"
+  echo "A Stack chamada $name está criada. Noome: $name"
 
   # Obtém o ID da stack
   id=$(echo "$response" | jq -r '.[] | select(.Name == "'"$STACK_NAME"'") | .Id')

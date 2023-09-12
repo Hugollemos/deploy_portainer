@@ -3,7 +3,7 @@ URL=$API_URL
 API_KEY=$API_KEY
 STACK_NAME=$STACK_NAME
 FILE_PATH=$FILE_PATH
-
+imagem=hugollemos/demo:latest
 # Faz a solicitação GET e armazena a resposta em uma variável
 response=$(curl -s -X GET "$URL" -H "X-API-Key: $API_KEY" --insecure)
 
@@ -37,7 +37,7 @@ if echo "$response" | jq -e '.[] | select(.Name == "'"$STACK_NAME"'")' > /dev/nu
   sleep 5
 
   echo "realizando o pull"
-  docker pull hugollemos/demo:latest
+  docker pull $imagem
   sleep 5
   
   echo "CRIANDO A STACK $name"
@@ -59,7 +59,7 @@ if echo "$response" | jq -e '.[] | select(.Name == "'"$STACK_NAME"'")' > /dev/nu
   echo "Nova Stack criada. Id: $id"
 else
   echo fazendo o pull da imagem
-  docker pull hugollemos/demo:latest
+  docker pull $imagem
 
   echo "Nenhuma Stack da aplicação encontrada."
   echo "CRIANDO A NOVA STACK"
